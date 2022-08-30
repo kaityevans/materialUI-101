@@ -17,7 +17,7 @@ h2 {
 
 .dashboard-container {
   margin-top: 64px;
-  margin-left: 128px;  
+  margin-left: 128px;
 }
 
 .form {
@@ -37,3 +37,8 @@ h2 {
   margin-top: 16px;
 }
 
+.card-container {
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+}
