@@ -6,20 +6,24 @@ import Typography from "@mui/material/Typography";
 import Switch from "@mui/material/Switch";
 
 export default function OnlineCard(props) {
-  const {notifications, setNotifications, isToggled, setIsToggled} = props;
+  const { notifications, setNotifications, isToggled, setIsToggled } = props;
 
   const handleChange = () => {
     setIsToggled(!isToggled);
-    
-    if(!isToggled){
-    if(!notifications.length){
-    setNotifications(arr => [...arr, "Your application is offline. You won't be able to share or stream music to other devices."])
-    };
-    if(notifications.length >1 && !notifications.find(el=>el==="Your application is offline. You won't be able to share or stream music to other devices.")){
-    setNotifications(arr => [...arr, "Your application is offline. You won't be able to share or stream music to other devices."])
-    };
-    };
+
+    if (!isToggled) {
+      setNotifications({
+        ...notifications,
+        isOnline:
+          "Your application is offline. You won't be able to share or stream music to other devices.",
+      });
+    } else {
+      setNotifications({
+        ...notifications,
+        isOnline: null,
+      });
     }
+  };
   return (
     <Card sx={{ maxWidth: 275 }}>
       <CardContent>
@@ -31,11 +35,7 @@ export default function OnlineCard(props) {
         </div>
       </CardContent>
       <CardActions>
-        <Switch
-          defaultChecked
-          color="error"
-          onChange={handleChange}
-        />
+        <Switch defaultChecked color="error" onChange={handleChange} />
         {/* {BasicSelect(props)} */}
       </CardActions>
     </Card>
