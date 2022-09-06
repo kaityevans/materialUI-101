@@ -6,21 +6,24 @@ import Typography from "@mui/material/Typography";
 import Slider from "@mui/material/Slider";
 // import BasicSelect from "./components/CardActions"
 
-
 export default function VolumeCard(props) {
-  const {notifications, setNotifications, isHigh, setIsHigh} = props;
+  const { notifications, setNotifications, isHigh, setIsHigh } = props;
   const handleChange = (e) => {
     setIsHigh(e.target.value);
 
-    if(e.target.value > 80){
-    if(!notifications.length){
-    setNotifications([...notifications, "Listening to music at a high volume could cause long-term hearing loss."])
-    };
-    if(notifications.length >1 && !notifications.find(el=>el==="Listening to music at a high volume could cause long-term hearing loss.")){
-    setNotifications([...notifications, "Listening to music at a high volume could cause long-term hearing loss."])
-    };
-    };
+    if (e.target.value > 80) {
+      setNotifications({
+        ...notifications,
+        isLoud:
+          "Listening to music at a high volume could cause long-term hearing loss.",
+      });
+    } else {
+      setNotifications({
+        ...notifications,
+        isLoud: null,
+      });
     }
+  };
   return (
     <Card sx={{ maxWidth: 275 }}>
       <CardContent>

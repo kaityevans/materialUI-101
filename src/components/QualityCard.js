@@ -16,25 +16,16 @@ export default function QualityCard(props) {
     setIsQuality(e.target.value);
 
     if (e.target.value === 1) {
-      if (!notifications.length) {
-        setNotifications((arr) => [
-          ...arr,
+      setNotifications({
+        ...notifications,
+        isLowQuality:
           "Music quality is degraded. Increase quality if your connection allows it.",
-        ]);
-      }
-      if (
-        notifications.length > 1 &&
-        !notifications.find(
-          (el) =>
-            el ===
-            "Music quality is degraded. Increase quality if your connection allows it."
-        )
-      ) {
-        setNotifications((arr) => [
-          ...arr,
-          "Music quality is degraded. Increase quality if your connection allows it.",
-        ]);
-      }
+      });
+    } else {
+      setNotifications({
+        ...notifications,
+        isLowQuality: null,
+      });
     }
   };
 

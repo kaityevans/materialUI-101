@@ -13,7 +13,11 @@ function App() {
   const [isToggled, setIsToggled] = useState(false);
   const [isHigh, setIsHigh] = useState(!100);
   const [isQuality, setIsQuality] = useState(!3);
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState({
+    isLoud: null,
+    isOnline: null,
+    isLowQuality: null
+  });
 
   useEffect(() => {
     console.log(isToggled);
@@ -79,9 +83,9 @@ function App() {
             </div>
             <h4>System Notifications</h4>
             {/* This is where our notifications will go */}
-            {notifications.length ? (
+            {notifications ? (
               <div>
-                {notifications.map((note, index) => (
+                {Object.values(notifications).map((note, index) => (
                   <p key={index} style={{ color: "red" }}>
                     {note}
                   </p>
